@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-<meta name="theme-color" content="#eae7e1" />
+<meta name="theme-color" content="#2a1a0d" />
 <meta name="description" content="Anotador simple para partidas de truco" />
 
 <title>Anotador de Truco</title>
@@ -12,38 +12,64 @@
 <link rel="icon" href="icons/icon-192.png" />
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Truco" />
 
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="app">
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="stickGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="100">
+      <stop offset="0" stop-color="#f0e1bd"/>
+      <stop offset="0.5" stop-color="#cdb27e"/>
+      <stop offset="1" stop-color="#f0e1bd"/>
+    </linearGradient>
+    <radialGradient id="headGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0" stop-color="#ff8a5c"/>
+      <stop offset="0.55" stop-color="#d6491f"/>
+      <stop offset="1" stop-color="#7e2410"/>
+    </radialGradient>
+  </defs>
+</svg>
 
-  <header class="header">
-    <div class="name-slot name-slot-a"><span class="team-name" id="nameA">Nosotros</span></div>
-    <button id="settingsBtn" class="gear-btn" aria-label="Ajustes">⚙</button>
-    <div class="name-slot name-slot-b"><span class="team-name" id="nameB">Ellos</span></div>
+<div class="app">
+  <div class="wood-grain" aria-hidden="true"></div>
+
+  <header class="appbar">
+    <button id="backBtn" class="bar-btn" aria-label="Deshacer último punto">←</button>
+    <h1 class="bar-title">Anotador</h1>
+    <button id="menuBtn" class="bar-btn" aria-label="Ajustes">☰</button>
   </header>
 
-  <main class="board">
-    <button class="column" id="colA" aria-label="Sumar punto a Nosotros">
-      <div class="tally" id="tallyA"></div>
-    </button>
+  <div class="board">
+    <div class="side-rail side-rail-a">
+      <button class="round-btn" data-action="plus" data-team="a" aria-label="Sumar punto a Nos">+</button>
+      <button class="round-btn" data-action="minus" data-team="a" aria-label="Restar punto a Nos">−</button>
+    </div>
 
-    <div class="divider" aria-hidden="true"></div>
+    <main class="score-area">
+      <div class="col-headers">
+        <div class="col-header" id="nameA">Nos:</div>
+        <div class="col-header" id="nameB">Ellos:</div>
+      </div>
+      <div class="columns">
+        <div class="column" id="colA"></div>
+        <div class="v-divider" aria-hidden="true"></div>
+        <div class="column" id="colB"></div>
+      </div>
+    </main>
 
-    <button class="column" id="colB" aria-label="Sumar punto a Ellos">
-      <div class="tally" id="tallyB"></div>
-    </button>
-  </main>
+    <div class="side-rail side-rail-b">
+      <button class="round-btn" data-action="plus" data-team="b" aria-label="Sumar punto a Ellos">+</button>
+      <button class="round-btn" data-action="minus" data-team="b" aria-label="Restar punto a Ellos">−</button>
+    </div>
+  </div>
 
   <footer class="footer">
-    <button id="minusA" class="minus-btn" aria-label="Restar punto a Nosotros">−</button>
-    <button id="minusB" class="minus-btn" aria-label="Restar punto a Ellos">−</button>
+    <button id="newMatchBtn" class="pill-btn">Nuevo partido</button>
   </footer>
-
 </div>
 
 <div id="winOverlay" class="overlay hidden">
@@ -67,16 +93,15 @@
     </div>
 
     <button id="saveNamesBtn" class="primary-btn">Guardar</button>
-    <button id="resetBtn" class="link-btn">Reiniciar partida</button>
   </div>
 </div>
 
 <div id="resetConfirm" class="overlay hidden">
   <div class="overlay-card">
-    <div class="win-text">¿Reiniciar partida?</div>
+    <div class="win-text">¿Nuevo partido?</div>
     <div class="confirm-row">
       <button id="cancelReset" class="secondary-btn">Cancelar</button>
-      <button id="confirmReset" class="primary-btn">Reiniciar</button>
+      <button id="confirmReset" class="primary-btn">Empezar</button>
     </div>
   </div>
 </div>
