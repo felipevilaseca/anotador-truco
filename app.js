@@ -162,6 +162,9 @@
     });
   });
 
+  colA.addEventListener('click', () => addPoint('a'));
+  colB.addEventListener('click', () => addPoint('b'));
+
   backBtn.addEventListener('click', undoLast);
 
   targetOpts.forEach((btn) => {

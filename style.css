@@ -147,8 +147,15 @@ body {
   border-bottom: 2px solid var(--gold-soft);
 }
 
+.columns-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
 .columns {
   display: flex;
+  height: 100%;
   padding-top: 14px;
 }
 
@@ -158,15 +165,28 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  padding: 0 8px;
+  padding: 8px 8px 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
 }
 
+.column:active { background: rgba(255,255,255,0.06); }
+
 .v-divider {
-  flex: 0 0 auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
   width: 2px;
   background: var(--gold-soft);
-  align-self: stretch;
-  margin: 0 2px;
+  transform: translateX(-50%);
+  pointer-events: none;
 }
 
 .buenas-line {

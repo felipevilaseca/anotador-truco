@@ -1,4 +1,4 @@
-const CACHE = 'truco-anotador-v3';
+const CACHE = 'truco-anotador-v4';
 const ASSETS = [
   './',
   './index.html',
